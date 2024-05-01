@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toys</title>
+  <link rel="icon" type="image/x-icon" href="https://www.miniso.am/media/favicon/default/fav.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.miniso.am/media/favicon/default/fav.png">
+    <style>
+        .container {
+            display:grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .image {
+            max-width: 300px;
+            border: solid black 1px;
+            height:300px;
+        }
+        .text {
+            font-family:Arial, sans-serif; color:#ff0000; font-size:25px;
+        }
+        .container-item {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<a href="/">
+  <button style="background-color:#ffffff; color:#ff0000; border-radius:5px; vertical-align:top; font-family:Arial, sans-serif">Ետ</button>
+</a>
+<br>
+<div class="container">
+    <div class="container-item">
+        <img class="image" src="https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941055119443.jpg">
+        <div class="text">Փափուկ խաղալիք-4490 դրամ</div>
+    </div>
+    <div class="container-item">
+        <img class="image" src="https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798889260.jpg">
+        <div class="text">Ջրի ատրճանակ-4990 դրամ</div>
+    </div>
+    <div class="container-item">
+        <img class="image" src="https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798805673.jpg">
+        <div class="text">Լեգո ինքնաթիռ-9990 դրամ</div>
+    </div>
+</div>
+</body>
+</html>
