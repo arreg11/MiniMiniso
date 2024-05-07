@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Others</title>
+  <link rel="icon" type="image/x-icon" href="https://www.miniso.am/media/favicon/default/fav.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.miniso.am/media/favicon/default/fav.png">
+    <style>
+        .container {
+            display:grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+        .image {
+            max-width: 200px;
+            border: solid black 1px;
+            height:200px;
+        }
+        .text {
+            font-family:Arial, sans-serif; color:#ff0000; font-size:20px;
+        }
+        .container-item {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<a href="/">
+  <button style="background-color:#ffffff; color:#ff0000; border-radius:5px; vertical-align:top; font-family:Arial, sans-serif">Ետ</button>
+</a>
+<br>
+<div class="container">
+</div>
+<script>
+        function generateLinks() {
+            var content = [{uri: "https://www.miniso.am/media/catalog/product/cache/1531e7e157af97ed696927ab3c833315/6/9/6941055144353.jpg", content: "Հայելի-3490 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941501549046.jpg", content: "Դրամապանակ-990 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941501540784.jpg", content: "Կախազարդ-490 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6936735306732.jpg", content: "Հողաթափեր-1990 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/270122d65d724a5d84bfe062ac9e6b83/6/9/6941447593721.jpg", content: "Անձրևանոց-3490 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941447580769-1.jpg", content: "Պայուսակ-5490 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941447582329.jpg", content: "Գլխարկ-990 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941055135986.jpg", content: "Ծածկոց-3490 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941501527907.jpg", content: "Բարձիկ-4990 դրամ"},
+            {uri: "https://flamingo.am/image/cache/catalog/Hagust,Koshik,Aksesuarner/Kananc/Aksesuarner/Mazeriaksesuarner/Abadokner/12000016/Headband-High-Navy-Blue-6-270x270.jpg", content: "Գլխակապ-2990 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798875942.jpg", content: "Սրբիչ-3490 դրամ"},
+            {uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzfUyfwE0Ik76ORZudf6P1_Mxt4vcXr0SSMacek2vqEjLyQuQeZNvdbRuFk8ZPmgJXJV0&usqp=CAU", content: "Կտավ։2990 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798805963.jpg", content: "Հեռախոսի պատյան-1990 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/1531e7e157af97ed696927ab3c833315/6/9/6941501545680.jpg", content: "Ծաղկաման-590 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941447578315.jpg", content: "Ալկոգելի ռեզինե տուփ-190 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798840742.jpg", content: "Զարդատուփ-1090 դրամ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798807929.jpg", content: "Զամբյուղ-790 դրամ"},
+            {uri: "https://www.miniso.com/UploadFiles/Images/%E7%9C%BC%E7%BD%A9.jpg", content: "Աչքերը փակող դիմակ-490 դրամ"},
+            ]
+
+            var container = document.querySelector(".container");
+
+            for (var item of content) {
+                const containerItem = document.createElement("div");
+                containerItem.setAttribute("class", "container-item");
+                const image = document.createElement("img");
+                image.setAttribute("class", "image");
+                image.setAttribute("src", item.uri);
+                const textElement = document.createElement("div");
+                textElement.setAttribute("class", "text");
+                textElement.innerHTML = item.content;
+
+                containerItem.appendChild(image);
+                containerItem.appendChild(textElement);
+
+                container.appendChild(containerItem);
+            }
+        }
+
+        generateLinks();
+    </script>
+</body>
+</html>
