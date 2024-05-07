@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lexical Analysis</title>
+  <link rel="icon" type="image/x-icon" href="https://www.miniso.am/media/favicon/default/fav.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.miniso.am/media/favicon/default/fav.png">
+    <style>
+        .container {
+            display:grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .image {
+            max-width: 200px;
+            border: solid black 1px;
+            height:200px;
+        }
+        .text {
+            font-family:Arial, sans-serif; color:#ff0000; font-size:20px;
+        }
+        .container-item {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<a href="/">
+  <button style="background-color:#ffffff; color:#ff0000; border-radius:5px; vertical-align:top; font-family:Arial, sans-serif">Ետ</button>
+</a>
+<br>
+<div class="container">
+</div>
+<script>
+        function generateLinks() {
+            var content = [{uri: "https://www.miniso.am/media/catalog/product/cache/1531e7e157af97ed696927ab3c833315/6/9/6941055144353.jpg", content: "Հայելի = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941501549046.jpg", content: "Դրամապանակ = դրամ + ա + պան + ակ = արմատ + հոդ․ + արմատ + ածանց"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941501540784.jpg", content: "Կախազարդ = կախ + ա + զարդ = արմատ + հոդ․ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6936735306732.jpg", content: "Հողաթափեր = հող + ա + թափ = արմատ + հոդ․ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/270122d65d724a5d84bfe062ac9e6b83/6/9/6941447593721.jpg", content: "Անձրևանոց = անձրև + ան + ոց = արմատ + ածանց + ածանց"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941447580769-1.jpg", content: "Պայուսակ = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941447582329.jpg", content: "Գլխարկ = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941055135986.jpg", content: "Ծածկոց = Ծածկ + ոց = արմատ + ածանց"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941501527907.jpg", content: "Բարձիկ = բարձ + իկ = արմատ + ածանց"},
+            {uri: "https://flamingo.am/image/cache/catalog/Hagust,Koshik,Aksesuarner/Kananc/Aksesuarner/Mazeriaksesuarner/Abadokner/12000016/Headband-High-Navy-Blue-6-270x270.jpg", content: "Գլխակապ = գլուխ + ա + կապ = արմատ + հոդ․ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798875942.jpg", content: "Սրբիչ = սուրբ  + իչ = արմատ + ածանց"},
+            {uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzfUyfwE0Ik76ORZudf6P1_Mxt4vcXr0SSMacek2vqEjLyQuQeZNvdbRuFk8ZPmgJXJV0&usqp=CAU", content: "Կտավ = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798805963.jpg", content: "Հեռախոսի պատյան = հեռու + ա + խոս = արմատ + հոդ․ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/1531e7e157af97ed696927ab3c833315/6/9/6941501545680.jpg", content: "Ծաղկաման = ծաղիկ + աման = արմատ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941447578315.jpg", content: "Ալկոգելի ռեզինե տուփ = Ալկո + գել = ածանց + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798840742.jpg", content: "Զարդատուփ = զարդ + ա + տուփ = արմատ + հոդ․ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798807929.jpg", content: "Զամբյուղ = պարզ բառ"},
+            {uri: "https://www.miniso.com/UploadFiles/Images/%E7%9C%BC%E7%BD%A9.jpg", content: "Աչքերը փակող դիմակ = դիմ + ակ = արմատ + ածանց"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941055119443.jpg", content: "Փափուկ խաղալիք = խաղ + ա + լիք = արմատ + հոդ․ + ածանց"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798889260.jpg", content: "Ջրի ատրճանակ = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798805673.jpg", content: "Լեգո ինքնաթիռ = ինքն + ա + թիռ = արմատ + հոդ․ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798844955.jpg", content: "Նոթատետր = նոթ + ա + տետր = արմատ + հոդ․ + արմատ"},
+            {uri: "https://chinarcart.com/cdn/shop/files/6931798878486-1_1024x1024.jpg?v=1700860157", content: "Ռետին = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/2/0/2022031407495681-1.jpg", content: "Գրիչ = գիր + իչ = արմատ + ածանց"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798862102.jpg", content: "Ֆլոմաստեր = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941055135153.jpg", content: "Տետր = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/i/m/image_1024.jpg", content: "Ջրի շիշ = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/270122d65d724a5d84bfe062ac9e6b83/4/5/4509791368925.jpg", content: "Լանչբոքս = լանչ + բոքս = արմատ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/2/0/2022042135910284-1.jpg", content: "Սանր = պարզ բառ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6954578702931.jpg", content: "Շրթներկ = շուրթ + ներկ = արմատ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/270122d65d724a5d84bfe062ac9e6b83/6/9/6941501560515.jpg", content: "Մազակալ = մազ + ա + կալ = արմատ + հոդ․ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/2/0/2012456310105.jpg", content: "Օծանելիք = օծ + ա + նել + իք = արմատ + հոդ․ + արմատ + ածանց"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6940079077890.jpg", content: "Դեմքի դիմակ = դիմ + ակ = արմատ + ածանց"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/4/5/4512445072413.jpg", content: "Ականջակալ = ականջ + ա + կալ = արմատ + հոդ․ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798820027-1.jpg", content: "Ժամացույց = ժամ + ա + ցույց = արմատ + հոդ․ + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6941447588611.jpg", content: "Անլար բարձրախոս = ան + լար = ածանց + արմատ"},
+            {uri: "https://www.miniso.am/media/catalog/product/cache/2ff9514beff202b32500cc36f8789a25/6/9/6931798840513.jpg", content: "Լուսամփոփ = լույս + ամփոփ = արմատ + արմատ"}];
+
+            var container = document.querySelector(".container");
+
+            for (var item of content) {
+                const containerItem = document.createElement("div");
+                containerItem.setAttribute("class", "container-item");
+                const image = document.createElement("img");
+                image.setAttribute("class", "image");
+                image.setAttribute("src", item.uri);
+                const textElement = document.createElement("div");
+                textElement.setAttribute("class", "text");
+                textElement.innerHTML = item.content;
+
+                containerItem.appendChild(image);
+                containerItem.appendChild(textElement);
+
+                container.appendChild(containerItem);
+            }
+        }
+
+        generateLinks();
+    </script>
+</body>
+</html>
